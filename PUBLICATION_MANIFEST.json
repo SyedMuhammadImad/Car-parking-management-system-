@@ -1,7 +1,7 @@
 {
-  "date": "2026-10-05",
+  "date": "2026-10-06",
   "title": "Car parking console system",
-  "runtime_verified_for_publication": false,
+  "completion_gate_passed": true,
   "files": [
     {
       "path": ".gitignore",
@@ -15,13 +15,18 @@
     },
     {
       "path": "main.cpp",
-      "sha256": "49b56e26680b486f2fa683f2bdd2cb7a31276c10c1594906c6df053bffc1e2ba",
-      "bytes": 5998
+      "sha256": "910bf255befa355414afd9109a56a4130301ea21e7f04c3514f5ace178b1915a",
+      "bytes": 7291
     },
     {
       "path": "README.md",
-      "sha256": "875f27d27cabe0d3c4dd98881a20fbf3426336efaeefa226bcf20099e50dcd2d",
-      "bytes": 1951
+      "sha256": "cc3cdada7bcf1e4ec715f258a4bab7ac7b3ce22fbe0514cdfa61994e5c910e25",
+      "bytes": 504
+    },
+    {
+      "path": "VERIFICATION.json",
+      "sha256": "3e00ba3b9bfbc72f2167b1cae8a2dc307d9677e1dfdd90971d60e1fd37f2313a",
+      "bytes": 832
     }
   ]
 }

@@ -3,6 +3,7 @@
 // and queues (entry queue + overflow waitlist).
 
 #include <iostream>
+#include <limits>
 #include <queue>
 #include <stack>
 using namespace std;
@@ -24,7 +25,7 @@ public:
     Floor(int floorNum, int cap) : floorNo(floorNum), capacity(cap) {}
 
     bool addCar(int carId) {
-        if (parkedCars.size() < capacity) {
+        if (parkedCars.size() < static_cast<size_t>(capacity)) {
             parkedCars.push(carId);
             return true;
         }
@@ -53,7 +54,7 @@ public:
     }
 
     bool isFull() {
-        return parkedCars.size() == capacity;
+        return parkedCars.size() == static_cast<size_t>(capacity);
     }
 
     int getAvailableSlots() {
@@ -71,7 +72,7 @@ private:
     int parkedCount;
 
 public:
-    ParkingLot(int numFloors, int floorCap) : numFloors(numFloors), floorCapacity(floorCap) {
+    ParkingLot(int numFloors, int floorCap) : floorCapacity(floorCap), numFloors(numFloors) {
         floors = new Floor[numFloors];
         for (int i = 0; i < numFloors; i++) {
             floors[i] = Floor(i + 1, floorCap);
@@ -85,7 +86,19 @@ public:
         delete[] parkedCars;
     }
 
+    ParkingLot(const ParkingLot&) = delete;
+    ParkingLot& operator=(const ParkingLot&) = delete;
+
     void enterCar(int carId) {
+        if (carId <= 0) { cout << "Invalid car ID.\n"; return; }
+        for (int i = 0; i < parkedCount; ++i) {
+            if (parkedCars[i].carId == carId) { cout << "Car already present.\n"; return; }
+        }
+        auto waiting = overflowWaitlist;
+        while (!waiting.empty()) {
+            if (waiting.front() == carId) { cout << "Car already waiting.\n"; return; }
+            waiting.pop();
+        }
         entryQueue.push(carId);
         assignCarToFloor();
     }
@@ -181,18 +194,23 @@ int main() {
         cout << "3. Display Parking Lot Status\n";
         cout << "4. Exit Program\n";
         cout << "Enter your choice: ";
-        cin >> choice;
+        if (!(cin >> choice)) {
+            if (cin.eof()) break;
+            cerr << "Invalid input: enter a menu number." << endl;
+            cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
+        }
 
         switch (choice) {
             case 1:
                 cout << "Enter Car ID to park: ";
-                cin >> carId;
+                if (!(cin >> carId) || carId <= 0) { cerr << "Invalid car ID." << endl; cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n'); break; }
                 parkingLot.enterCar(carId);
                 break;
 
             case 2:
                 cout << "Enter Car ID to remove: ";
-                cin >> carId;
+                if (!(cin >> carId) || carId <= 0) { cerr << "Invalid car ID." << endl; cin.clear(); cin.ignore(numeric_limits<streamsize>::max(), '\n'); break; }
                 parkingLot.exitCar(carId);
                 break;
 

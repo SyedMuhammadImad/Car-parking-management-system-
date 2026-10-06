@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-06",
+  "project": "Car-parking-management-system-",
+  "completion_scope": "academic project or finished document; not a production certification",
+  "checks": [
+    {
+      "name": "functional normal",
+      "passed": true
+    },
+    {
+      "name": "functional missing_car",
+      "passed": true
+    },
+    {
+      "name": "terminates on EOF/invalid menu ''",
+      "passed": true
+    },
+    {
+      "name": "terminates on EOF/invalid menu 'abc\\n'",
+      "passed": true
+    },
+    {
+      "name": "terminates on EOF/invalid menu '99\\n'",
+      "passed": true
+    },
+    {
+      "name": "capacity, duplicate rejection, waitlist FIFO",
+      "passed": true
+    }
+  ],
+  "limitations": [
+    "Coursework console application; in-memory data resets when the program exits."
+  ]
+}
