@@ -1,7 +1,7 @@
 {
   "date": "2026-10-06",
   "project": "Car-parking-management-system-",
-  "completion_scope": "academic project or finished document; not a production certification",
+  "completion_scope": "experimental project or finished document; not a production certification",
   "checks": [
     {
       "name": "functional normal",
@@ -29,6 +29,6 @@
     }
   ],
   "limitations": [
-    "Coursework console application; in-memory data resets when the program exits."
+    "project console application; in-memory data resets when the program exits."
   ]
 }
